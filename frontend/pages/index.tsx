@@ -180,7 +180,7 @@ const Home: NextPage = () => {
         lorem ipsum
       </Text>
       <Box maxWidth="container.sm" p="8" mt="8" bg="gray.100">
-        <Text fontSize="xl">Contract Address: {CONTRACT_ADDRESS}</Text>
+        <Text fontSize="xl">Contract Address: {"CONTRACT_ADDRESS"}</Text>
         <Divider my="8" borderColor="gray.400" />
         <Box>
           <Text fontSize="lg">Greeting: {state.greeting}</Text>

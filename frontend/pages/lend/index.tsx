@@ -19,7 +19,7 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from 'wagmi'
-// import { YourNFTContract as LOCAL_CONTRACT_ADDRESS } from '../../artifacts/contracts/contractAddress'
+import { YourNFTContract as LOCAL_CONTRACT_ADDRESS } from '../../artifacts/contracts/contractAddress'
 // `YourNFT.js` was made manually from `YourNFT.json`, since wagmi hooks require a `const` for the `abi` input.
 // If you update the `YourNFT` contract, be sure to update this `YourNFT.js` file as well.
 // Simply copy the array from `abi: []` found in `YourNFT.json`.
@@ -60,8 +60,8 @@ const NftIndex: NextPage = () => {
   const { isMounted } = useIsMounted()
 
   const CONTRACT_ADDRESS = isLocalChain
-    // ? LOCAL_CONTRACT_ADDRESS
-    GOERLI_CONTRACT_ADDRESS
+    ? LOCAL_CONTRACT_ADDRESS
+    : GOERLI_CONTRACT_ADDRESS
 
   const { address } = useAccount()
 
@@ -217,14 +217,14 @@ const NftIndex: NextPage = () => {
   return (
     <Layout>
       <Heading as="h1" mb="8">
-        Lend
+        Deposit and Get APY
       </Heading>
       <Text mt="8" fontSize="xl">
-      lorem ipsum
+        Lorem Ipsum
       </Text>
       <Box p="8" mt="8" bg="gray.100">
         <Text fontSize="xl" textAlign="center">
-          Contract Address: {CONTRACT_ADDRESS}
+          Contract Address: {"CONTRACT_ADDRESS"}
         </Text>
         <Divider my="8" borderColor="gray.400" />
         <Text textAlign="center">
