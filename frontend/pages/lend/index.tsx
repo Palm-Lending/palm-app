@@ -19,16 +19,16 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from 'wagmi'
-import { YourNFTContract as LOCAL_CONTRACT_ADDRESS } from '../artifacts/contracts/contractAddress'
+// import { YourNFTContract as LOCAL_CONTRACT_ADDRESS } from '../../artifacts/contracts/contractAddress'
 // `YourNFT.js` was made manually from `YourNFT.json`, since wagmi hooks require a `const` for the `abi` input.
 // If you update the `YourNFT` contract, be sure to update this `YourNFT.js` file as well.
 // Simply copy the array from `abi: []` found in `YourNFT.json`.
-import { YourNFT_ABI } from '../artifacts/contracts/YourNFT.sol/YourNFT.js'
-import { Layout } from '../components/layout/Layout'
-import { NftList } from '../components/NftList'
-import { useCheckLocalChain } from '../hooks/useCheckLocalChain'
-import { useIsMounted } from '../hooks/useIsMounted'
-import { generateTokenUri } from '../utils/generateTokenUri'
+import { YourNFT_ABI } from '../../artifacts/contracts/YourNFT.sol/YourNFT.js'
+import { Layout } from '../../components/layout/Layout'
+import { NftList } from '../../components/NftList'
+import { useCheckLocalChain } from '../../hooks/useCheckLocalChain'
+import { useIsMounted } from '../../hooks/useIsMounted'
+import { generateTokenUri } from '../../utils/generateTokenUri'
 
 const GOERLI_CONTRACT_ADDRESS = '0x982659f8ce3988096A735044aD42445D6514ba7e'
 
@@ -60,8 +60,8 @@ const NftIndex: NextPage = () => {
   const { isMounted } = useIsMounted()
 
   const CONTRACT_ADDRESS = isLocalChain
-    ? LOCAL_CONTRACT_ADDRESS
-    : GOERLI_CONTRACT_ADDRESS
+    // ? LOCAL_CONTRACT_ADDRESS
+    GOERLI_CONTRACT_ADDRESS
 
   const { address } = useAccount()
 
@@ -217,10 +217,10 @@ const NftIndex: NextPage = () => {
   return (
     <Layout>
       <Heading as="h1" mb="8">
-        Mint NFT
+        Lend
       </Heading>
       <Text mt="8" fontSize="xl">
-        This page only works on the GOERLI Testnet or on a Local Chain.
+      lorem ipsum
       </Text>
       <Box p="8" mt="8" bg="gray.100">
         <Text fontSize="xl" textAlign="center">
@@ -235,7 +235,7 @@ const NftIndex: NextPage = () => {
             onClick={mintItem}
             isLoading={isLoading}
           >
-            {address ? 'Mint NFT' : 'Please Connect Your Wallet'}
+            {address ? 'Lend' : 'Please Connect Your Wallet'}
           </Button>
         </Text>
         <Divider my="8" borderColor="gray.400" />
