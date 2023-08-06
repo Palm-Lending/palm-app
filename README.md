@@ -57,3 +57,4 @@ yarn dev
 This will start up the Next.js development server. Your site will be available at http://localhost:3000/
 
 To interact with the local contract, be sure to switch your MetaMask Network to `Localhost 8545`
+.

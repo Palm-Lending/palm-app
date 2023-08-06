@@ -161,7 +161,7 @@ const Home: NextPage = () => {
         Palm App
       </Heading>
       <Text fontSize="lg" mb="4">
-      lorem ipsum
+      Welcome to the Palm App. The Future of Lending and Borrowing on Bitcoin.
       </Text>
 
       <Button
@@ -173,7 +173,7 @@ const Home: NextPage = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        lorem ipsum
+        Lend
       </Button>
 
       <Text mt="8" fontSize="xl">
@@ -190,7 +190,7 @@ const Home: NextPage = () => {
             disabled={!address}
             onClick={fetchContractGreeting}
           >
-            {address ? 'Fetch Greeting' : 'Please Connect Your Wallet'}
+            {address ? 'Lend' : 'Please Connect Your Wallet'}
           </Button>
         </Box>
         <Divider my="8" borderColor="gray.400" />
@@ -217,7 +217,7 @@ const Home: NextPage = () => {
             disabled={!address || isLoading}
             onClick={() => write?.()}
           >
-            {address ? 'Set Greeting' : 'Please Connect Your Wallet'}
+            {address ? 'Lend' : 'Please Connect Your Wallet'}
           </Button>
         </Box>
       </Box>
