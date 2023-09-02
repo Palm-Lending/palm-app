@@ -1,19 +1,28 @@
-import { useState } from 'react'
-import Image from 'next/image'
-import { Container, Flex, Link, Spacer, Text } from '@chakra-ui/react'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-import NextLink from 'next/link'
-import React from 'react'
-import { Head, MetaProps } from './Head'
+import { useState } from 'react';
+import Image from 'next/image';
+import {
+  Container,
+  Flex,
+  Link,
+  Spacer,
+  Text,
+  IconButton,
+  Box,
+  useDisclosure,
+} from '@chakra-ui/react';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import NextLink from 'next/link';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'; // Import Chakra UI icons
 
 const navItems = [
   { title: 'Home', href: '/' },
   { title: 'Dashboard', href: '/dashboard' },
   { title: 'FAQs', href: '#' },
-]
+];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const { isOpen, onToggle } = useDisclosure(); // Hook for handling menu open/close
+
   return (
     <>
       <header>
@@ -34,47 +43,58 @@ export default function Navbar() {
 
             <Spacer />
 
+            {/* Hamburger menu icon */}
+            <IconButton
+              aria-label="Open Menu"
+              icon={<HamburgerIcon />}
+              onClick={onToggle}
+              display={{ base: 'block', md: 'none' }} // Show on mobile, hide on desktop
+            />
+
             <Flex
               py={{ base: 4, md: 0 }}
               justifyContent={{ base: 'center', md: 'flex-end' }}
+              display={{ base: isOpen ? 'block' : 'none', md: 'flex' }} // Show on mobile when menu is open
             >
-              <NextLink href="/" passHref legacyBehavior>
-                <Link fontSize="1.5rem" px="4" py="1">
-                  Home
-                </Link>
-              </NextLink>
-
-              <NextLink href="/dashboard" passHref legacyBehavior>
-                <Link fontSize="1.5rem" px="4" py="1">
-                  Dashboard
-                </Link>
-              </NextLink>
-
-              <NextLink href="/" passHref legacyBehavior>
-                <Link fontSize="1.5rem" px="4" py="1" pr="20">
-                  FAQs
-                </Link>
-              </NextLink>
-
+              {navItems.map((navItem) => (
+                <NextLink key={navItem.title} href={navItem.href} passHref>
+                  <Link fontSize="1rem" px="4" py="1">
+                    {navItem.title}
+                  </Link>
+                </NextLink>
+              ))}
               <ConnectButton />
             </Flex>
           </Flex>
         </Container>
 
-        {/* Modal */}
-        <div
-          className={`fixed inset-0 z-30 bg-gray-800 
-      bg-opacity-50 ${isOpen ? 'block' : 'hidden'}`}
-        >
-          <div className="bg-white text-primary-dark-blue flex flex-col text-center mx-5 my-20 py-4 rounded">
+        {/* Mobile menu */}
+        {isOpen && (
+          <Box
+            pt={20}
+            position="absolute"
+            w="100%"
+            p="4"
+            boxShadow="md"
+            display={{ base: 'block', md: 'none' }}
+          >
+            {/* Close menu icon */}
+            <IconButton
+              aria-label="Close Menu"
+              icon={<CloseIcon />}
+              onClick={onToggle}
+              alignSelf="flex-end"
+            />
             {navItems.map((navItem) => (
-              <a key={navItem.title} className="py-2" href={navItem.href}>
-                {navItem.title}
-              </a>
+              <NextLink key={navItem.title} href={navItem.href} passHref>
+                <Link fontSize="1rem" py="2" display="block">
+                  {navItem.title}
+                </Link>
+              </NextLink>
             ))}
-          </div>
-        </div>
+          </Box>
+        )}
       </header>
     </>
-  )
+  );
 }

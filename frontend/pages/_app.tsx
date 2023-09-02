@@ -54,7 +54,6 @@ export default function App({ Component, pageProps }: AppProps) {
         appInfo={demoAppInfo}
         chains={chains}
         theme={darkTheme({
-          borderRadius: 'small',
         })}
       >
         <ChakraProvider>

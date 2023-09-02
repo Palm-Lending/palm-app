@@ -79,16 +79,13 @@ export default function Footer() {
             </a>
           </div>
 
-          <div className="flex flex-col justify-between items-center lg:items-end lg:justify-self-end lg:col-span-4">
-            <button className="bg-primary-lime-green px-7 py-3 rounded-full text-neutral-white text-xs bg-gradient-to-r from-primary-lime-green to-primary-bright-cyan hover:button-brightness mb-7 focus:outline-none focus:ring ring-green-400">
-            Connect Wallet
-            </button>
 
+        </div>
+        <div className="flex flex-col justify-between items-center lg:items-end lg:justify-self-end lg:col-span-4">
             <p className="text-neutral-grayish-blue text-sm">
-              © Easybank. All Rights Reserved
+            © 2023 Palm Protocol. All Rights Reserved
             </p>
           </div>
-        </div>
       </div>
     </footer>
   );

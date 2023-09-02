@@ -4,15 +4,14 @@ import type { NextPage } from 'next'
 import {
   Box,
   Button,
-  Divider,
   Heading,
   Input,
-  Link,
-  ListItem,
   Text,
-  UnorderedList,
   useToast,
-} from '@chakra-ui/react'
+  Link,
+  UnorderedList,
+  ListItem,
+} from '@chakra-ui/react';
 import { ethers, providers } from 'ethers'
 import { useReducer } from 'react'
 import {
@@ -159,16 +158,14 @@ const Home: NextPage = () => {
     }
   }
 
-  if (!isMounted) {
-    return null
-  }
+  // if (!isMounted) {
+  //   return (
+  //     <div>Please Connect Your Wallet.</div>
+  //   )
+  // }
 
   return (
     <>
-      <Head>
-        <title>Palm</title>
-        <link rel="icon" href="/image-logo.svg" />
-      </Head>
       <Navbar />
       <div className="relative overflow-hidden">
         <div className="hidden lg:block w-full h-full absolute">
@@ -180,73 +177,8 @@ const Home: NextPage = () => {
         <Blog />
         <Footer />
       </div>
-      <Layout>
-        <Heading as="h1" mb="8">
-          Palm App
-        </Heading>
-        <Text fontSize="lg" mb="4">
-          Welcome to the Palm App. The Future of Lending and Borrowing on
-          Bitcoin.
-        </Text>
-        <Button
-          as="a"
-          size="lg"
-          colorScheme="teal"
-          variant="outline"
-          href="https://github.com/ChangoMan/nextjs-ethereum-starter"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Lend
-        </Button>
-        <Text mt="8" fontSize="xl">
-          lorem ipsum
-        </Text>
-        <Box maxWidth="container.sm" p="8" mt="8" bg="gray.100">
-          <Text fontSize="xl">Contract Address: {CONTRACT_ADDRESS}</Text>
-          <Divider my="8" borderColor="gray.400" />
-          <Box>
-            <Text fontSize="lg">Greeting: {state.greeting}</Text>
-            <Button
-              mt="2"
-              colorScheme="teal"
-              disabled={!address}
-              onClick={fetchContractGreeting}
-            >
-              {address ? 'Lend' : 'Please Connect Your Wallet'}
-            </Button>
-          </Box>
-          <Divider my="8" borderColor="gray.400" />
-          <Box>
-            <Text fontSize="lg" mb="2">
-              Enter a Greeting:
-            </Text>
-            <Input
-              bg="white"
-              type="text"
-              placeholder="Enter a Greeting"
-              disabled={!address || isLoading}
-              onBlur={(e) => {
-                dispatch({
-                  type: 'SET_INPUT_VALUE',
-                  inputValue: e.target.value,
-                })
-              }}
-            />
-            <Button
-              mt="2"
-              colorScheme="teal"
-              isLoading={isLoading}
-              disabled={!address || isLoading}
-              onClick={() => write?.()}
-            >
-              {address ? 'Lend' : 'Please Connect Your Wallet'}
-            </Button>
-          </Box>
-        </Box>
-      </Layout>
     </>
-  )
+);
 }
 
 export default Home

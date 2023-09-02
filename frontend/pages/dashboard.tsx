@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
-import { useRouter } from 'next/router'
-import Head from 'next/head'
-import type { NextPage } from 'next'
-import Navbar from '../components/layout/Navbar'
-import Hero from '../components/home/Hero'
-import Motivation from '../components/home/Motivation'
-import About from '../components/home/About'
-import Blog from '../components/home/Blog'
-import Footer from '../components/layout/Footer'
-import DepositModal from '../components/modal/deposit'
-import WithdrawModal from '../components/modal/withdraw'
-import RepayModal from '../components/modal/repay'
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
+import type { NextPage } from 'next';
+import Navbar from '../components/layout/Navbar';
+import Hero from '../components/home/Hero';
+import Motivation from '../components/home/Motivation';
+import About from '../components/home/About';
+import Blog from '../components/home/Blog';
+import Footer from '../components/layout/Footer';
+import DepositModal from '../components/modal/deposit';
+import WithdrawModal from '../components/modal/withdraw';
+import RepayModal from '../components/modal/repay';
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Text,
+} from '@chakra-ui/react';
 
 const assetsToSupplyData = [
   { asset: 'USDT', balance: 0, apy: 2.35 },
@@ -18,40 +25,39 @@ const assetsToSupplyData = [
   { asset: 'TUPAN', balance: 0, apy: 4.23 },
   { asset: 'EUROC', balance: 0, apy: 1.24 },
   { asset: 'AVINOC', balance: 0, apy: 5.24 },
-]
+];
 
 const assetsToBorrowData = [
   { asset: 'USDT', balance: 0, apy: 4.32 },
   { asset: 'zUSD', balance: 0, apy: 3.65 },
   { asset: 'ZENIQ', balance: 0, apy: 17.23 },
   { asset: 'EUROC', balance: 0, apy: 6.94 },
-]
+];
 
 interface YourSupplyProps {
-  onSwitch: () => void // Replace `() => void` with the actual function type
-  onWithdraw: () => void // Replace `() => void` with the actual function type
+  onSwitch: () => void;
+  onWithdraw: () => void;
 }
 
 const YourSupply: React.FC<YourSupplyProps> = ({ onSwitch, onWithdraw }) => {
-  // const router = useRouter('');
-  const [isDepositModal, setDepositModal] = useState(false)
-  const [isWithdrawModal, setWithdrawModal] = useState(false)
+  const [isDepositModal, setDepositModal] = useState(false);
+  const [isWithdrawModal, setWithdrawModal] = useState(false);
 
   const handleOpenDeposit = () => {
-    setDepositModal(true)
-  }
+    setDepositModal(true);
+  };
 
   const handleCloseDeposit = () => {
-    setDepositModal(false)
-  }
+    setDepositModal(false);
+  };
 
   const handleOpenWithdraw = () => {
-    setWithdrawModal(true)
-  }
+    setWithdrawModal(true);
+  };
 
   const handleCloseWithdraw = () => {
-    setWithdrawModal(false)
-  }
+    setWithdrawModal(false);
+  };
 
   return (
     <>
@@ -60,12 +66,12 @@ const YourSupply: React.FC<YourSupplyProps> = ({ onSwitch, onWithdraw }) => {
           <div className="font-bold text-xl mb-2">Your supplies</div>
         </div>
         <div className="px-6 py-4 flex flex-row">
-          <p className=" text-base text-white">Balance $18.43</p>
+          <p className="text-base text-white">Balance $18.43</p>
           <p className="pr-2 pl-2">|</p>
-          <p className=" text-base text-white">APY $18.43</p>
+          <p className="text-base text-white">APY $18.43</p>
         </div>
         <div className="px-6 pt-4 pb-2 flex flex-row content-end">
-          <div className=" pt-4 pb-2">
+          <div className="pt-4 pb-2">
             <div className="inline-block px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
               <div className="flex flex-col">
                 <span>Asset</span>
@@ -99,9 +105,6 @@ const YourSupply: React.FC<YourSupplyProps> = ({ onSwitch, onWithdraw }) => {
             >
               Withdraw
             </button>
-            {/* <button onClick={() => onSwitch()} className="ml-2 mr-2 bg-transparent hover:bg-white-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded">
-                            Switch
-                        </button> */}
           </div>
 
           {isDepositModal && (
@@ -122,24 +125,25 @@ const YourSupply: React.FC<YourSupplyProps> = ({ onSwitch, onWithdraw }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 interface YourBorrowProps {
-  onRepay: () => void // Replace `() => void` with the actual function type
-  onBorrow: () => void // Replace `() => void` with the actual function type
+  onRepay: () => void;
+  onBorrow: () => void;
 }
 
 const YourBorrow: React.FC<YourBorrowProps> = ({ onRepay, onBorrow }) => {
-  const [isRepayModal, setRepayModal] = useState(false)
+  const [isRepayModal, setRepayModal] = useState(false);
 
   const handleOpenRepay = () => {
-    setRepayModal(true)
-  }
+    setRepayModal(true);
+  };
 
   const handleCloseRepay = () => {
-    setRepayModal(false)
-  }
+    setRepayModal(false);
+  };
+
   return (
     <>
       <div className="rounded w-6/12 overflow-hidden shadow-lg bg-gray-custom">
@@ -147,14 +151,14 @@ const YourBorrow: React.FC<YourBorrowProps> = ({ onRepay, onBorrow }) => {
           <div className="font-bold text-xl mb-2">Your Borrow</div>
         </div>
         <div className="px-6 py-4 flex flex-row">
-          <p className=" text-base text-white">Balance $18.43</p>
+          <p className="text-base text-white">Balance $18.43</p>
           <p className="pr-2 pl-2">|</p>
-          <p className=" text-base text-white">APY $18.43</p>
+          <p className="text-base text-white">APY $18.43</p>
           <p className="pr-2 pl-2">|</p>
-          <p className=" text-base text-white">Borrow power used $18.43</p>
+          <p className="text-base text-white">Borrow power used $18.43</p>
         </div>
         <div className="px-6 pt-4 pb-2 flex flex-row content-end">
-          <div className=" pt-4 pb-2">
+          <div className="pt-4 pb-2">
             <div className="inline-block px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
               <div className="flex flex-col">
                 <span>Asset</span>
@@ -182,9 +186,6 @@ const YourBorrow: React.FC<YourBorrowProps> = ({ onRepay, onBorrow }) => {
             >
               Repay
             </button>
-            {/* <button onClick={() => onBorrow()} className="ml-2 mr-2 bg-transparent hover:bg-white-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded">
-                            Borrow
-                        </button> */}
           </div>
 
           {isRepayModal && (
@@ -197,12 +198,12 @@ const YourBorrow: React.FC<YourBorrowProps> = ({ onRepay, onBorrow }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 interface YourAssetProps {
-  onSupply: () => void
-  onDetails: (asset: string) => void // Update the type to accept an 'asset' argument
+  onSupply: () => void;
+  onDetails: (asset: string) => void;
 }
 
 const AssetsToSupply: React.FC<YourAssetProps> = ({ onSupply, onDetails }) => {
@@ -229,7 +230,7 @@ const AssetsToSupply: React.FC<YourAssetProps> = ({ onSupply, onDetails }) => {
             </thead>
             <tbody>
               {assetsToSupplyData.map((item) => (
-                <tr className="border-b">
+                <tr className="border-b" key={item.asset}>
                   <th
                     scope="row"
                     className="px-6 py-4 font-medium whitespace-nowrap"
@@ -240,13 +241,13 @@ const AssetsToSupply: React.FC<YourAssetProps> = ({ onSupply, onDetails }) => {
                   <td className="px-6 py-4">{item.apy}%</td>
                   <td className="px-6 py-4">
                     <button
-                      onClick={() => onSupply()}
+                      onClick={onSupply}
                       className="ml-2 mr-2 bg-gold hover:bg-gold text-white font-bold py-2 px-4 rounded"
                     >
                       Supply
                     </button>
                     <button
-                      // onClick={() => onDetails(item.asset)}
+                      onClick={() => onDetails(item.asset)}
                       className="ml-2 mr-2 bg-transparent hover:bg-white-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded"
                     >
                       Details
@@ -259,11 +260,11 @@ const AssetsToSupply: React.FC<YourAssetProps> = ({ onSupply, onDetails }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 interface YourBorrowedAssetProps {
-  onDetails: (asset: string) => void // Replace `() => void` with the actual function type
+  onDetails: (asset: string) => void;
 }
 
 const AssetsToBorrow: React.FC<YourBorrowedAssetProps> = ({ onDetails }) => {
@@ -293,7 +294,7 @@ const AssetsToBorrow: React.FC<YourBorrowedAssetProps> = ({ onDetails }) => {
             </thead>
             <tbody>
               {assetsToBorrowData.map((item) => (
-                <tr className="border-b">
+                <tr className="border-b" key={item.asset}>
                   <th
                     scope="row"
                     className="px-6 py-4 font-medium whitespace-nowrap"
@@ -304,11 +305,13 @@ const AssetsToBorrow: React.FC<YourBorrowedAssetProps> = ({ onDetails }) => {
                   <td className="px-6 py-4">{item.apy}%</td>
                   <td className="px-6 py-4">-</td>
                   <td className="px-6 py-4">
-                    <button className="ml-2 mr-2 bg-gold hover:bg-gold text-white font-bold py-2 px-4 rounded  opacity-50 cursor-not-allowed">
+                    <button
+                      className="ml-2 mr-2 bg-gold hover:bg-gold text-white font-bold py-2 px-4 rounded  opacity-50 cursor-not-allowed"
+                    >
                       Borrow
                     </button>
                     <button
-                      // onClick={() => onDetails(item.asset)}
+                      onClick={() => onDetails(item.asset)}
                       className="ml-2 mr-2 bg-transparent hover:bg-white-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded"
                     >
                       Details
@@ -321,30 +324,31 @@ const AssetsToBorrow: React.FC<YourBorrowedAssetProps> = ({ onDetails }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
+
 const Dashboard: NextPage = () => {
   const onSwitch = () => {
-    alert('on switch handle')
-  }
+    alert('on switch handle');
+  };
   const onDeposit = () => {
-    alert('on Deposit handle')
-  }
+    alert('on Deposit handle');
+  };
   const onWithdraw = () => {
-    alert('on Withdraw handle')
-  }
+    alert('on Withdraw handle');
+  };
   const onRepay = () => {
-    alert('on repay handle')
-  }
+    alert('on repay handle');
+  };
   const onBorrow = () => {
-    alert('on borrow handle')
-  }
+    alert('on borrow handle');
+  };
   const onSupply = () => {
-    alert('on supply handle')
-  }
+    alert('on supply handle');
+  };
   const onDetails = (asset: any) => {
-    alert('on details handle: ' + asset)
-  }
+    alert('on details handle: ' + asset);
+  };
   return (
     <>
       <Head>
@@ -357,14 +361,13 @@ const Dashboard: NextPage = () => {
           <div className="container h-screen relative z-20">
             <div className="h-full flex flex-col justify-end mt-10 lg:pb-0 lg:justify-center">
               <div className="flex flex-row justify-around mb-10 text-start text-white white border-white">
-                {/* Pass the props with their types */}
                 <YourSupply onSwitch={onSwitch} onWithdraw={onWithdraw} />
                 <YourBorrow onRepay={onRepay} onBorrow={onBorrow} />
               </div>
               <div className="flex flex-row justify-around mb-10 text-start text-white white border-white">
                 <AssetsToSupply
                   onSupply={onSupply}
-                  onDetails={(asset) => onDetails(asset)} // Pass the 'asset' argument here
+                  onDetails={(asset) => onDetails(asset)}
                 />
                 <AssetsToBorrow onDetails={(asset) => onDetails(asset)} />
               </div>
@@ -373,7 +376,7 @@ const Dashboard: NextPage = () => {
         </section>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

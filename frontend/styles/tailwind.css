@@ -1,15 +1,40 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Include Tailwind CSS */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-html,
-body {
-  font-size: 14px;
-  @layer bg-gradient-to-br from-gray-900 to-transparent;
+/* Set a responsive font size using relative units */
+html {
+  font-size: 16px; /* Adjust this base font size according to your design */
 }
 
-@tailwind utilities;
+/* Use a mobile-first approach for responsiveness */
+@media (min-width: 640px) {
+  html {
+    font-size: 18px;
+  }
+}
 
+html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Add a background gradient */
+body {
+  background: linear-gradient(to bottom right, #333, #0000); /* Replace with your gradient colors */
+  /* Consider text color and other contrast considerations */
+  color: #fff; /* White text on a dark background, adjust as needed */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Make buttons more accessible */
+/* TODO: Add proper focus styles and states for buttons */
 @layer utilities {
   @variants hover, focus {
     .button-brightness {
@@ -20,11 +45,18 @@ body {
       border-width: 0 0 4px 0;
       border-style: solid;
       border-image: linear-gradient(
-          to right,
-          hsl(136, 65%, 51%),
-          hsl(192, 70%, 51%)
-        )
-        3;
+        to right,
+        hsl(136, 65%, 51%),
+        hsl(192, 70%, 51%)
+      )
+      3;
     }
   }
+}
+
+.container {
+  max-width: 100%;
+}
+.main {
+  max-width: 100%;
 }
