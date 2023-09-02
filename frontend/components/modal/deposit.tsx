@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
-export default function DepositModal({ isOpen, onClose, vaultName }) {
-  const [amount, setAmount] = useState("");
-
-  if (!isOpen) {
-    return null;
+interface DepositModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    vaultName: string; // Assuming vaultName is a string
   }
 
+  export default function DepositModal({ isOpen, onClose, vaultName }: DepositModalProps) {
+    const [amount, setAmount] = useState("");
+  
+    if (!isOpen) {
+      return null;
+    }
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-75">
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">

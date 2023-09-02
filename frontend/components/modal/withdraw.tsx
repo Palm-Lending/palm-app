@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-export default function WithdrawModal({ isOpen, onClose, vaultName }) {
+interface WithdrawModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    vaultName: string; // Assuming vaultName is a string
+  }
+
+export default function WithdrawModal({ isOpen, onClose, vaultName }: WithdrawModalProps) {
   const [amount, setAmount] = useState("");
 
   if (!isOpen) {

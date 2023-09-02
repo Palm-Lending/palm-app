@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-export default function RepayModal({ isOpen, onClose, vaultName }) {
+interface RepayModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    vaultName: string; // Assuming vaultName is a string
+  }
+
+export default function RepayModal({ isOpen, onClose, vaultName }: RepayModalProps) {
   const [amount, setAmount] = useState("");
 
   if (!isOpen) {

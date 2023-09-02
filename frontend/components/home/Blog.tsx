@@ -42,8 +42,8 @@ export default function Blog() {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-5 lg:gap-7 lg:grid-cols-4">
-          {articles.map((article) => (
-            <article key={article.title} className="bg-black">
+          {articles.map((article, index) => (
+            <article key={index} className="bg-black">
               <div className="aspect-w-5 aspect-h-5 lg:aspect-w-2 lg:aspect-h-2">
                 <img
                   className="object-cover"
