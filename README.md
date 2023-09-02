@@ -49,7 +49,7 @@ cp .env.local.example .env.local
 ```
 
 This will create a file called `.env.local`. Open up that file and fill in the `NEXT_PUBLIC_ALCHEMY_API_KEY=` and `NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=` environment variables.
-.
+..
 ```bash
 yarn dev
 ```
