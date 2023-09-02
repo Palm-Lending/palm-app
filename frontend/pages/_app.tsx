@@ -1,17 +1,14 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import {
-  connectorsForWallets,
-  darkTheme,
-  getDefaultWallets,
-  RainbowKitProvider,
-} from '@rainbow-me/rainbowkit'
-import '@rainbow-me/rainbowkit/styles.css'
-import type { AppProps } from 'next/app'
-import { chain, configureChains, createClient, WagmiConfig } from 'wagmi'
-import { alchemyProvider } from 'wagmi/providers/alchemy'
-import { publicProvider } from 'wagmi/providers/public'
+import { ChakraProvider } from '@chakra-ui/react';
+import { connectorsForWallets, darkTheme, getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import '@rainbow-me/rainbowkit/styles.css';
+import type { AppProps } from 'next/app';
+import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
+import { useEffect } from 'react'; // Import useEffect
+import '../styles/tailwind.css';
 
-const ALCHEMY_API_KEY = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || ''
+const ALCHEMY_API_KEY = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || '';
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -29,25 +26,26 @@ const { chains, provider, webSocketProvider } = configureChains(
     }),
     publicProvider(),
   ]
-)
+);
 
 const { wallets } = getDefaultWallets({
   appName: 'RainbowKit demo',
   chains,
-})
+});
 
 const demoAppInfo = {
   appName: 'Rainbowkit Demo',
-}
+};
 
-const connectors = connectorsForWallets(wallets)
+const connectors = connectorsForWallets(wallets);
 
 const wagmiClient = createClient({
   autoConnect: true,
   connectors,
   provider,
   webSocketProvider,
-})
+});
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
