@@ -27,8 +27,13 @@ const assetsToBorrowData = [
   { asset: 'EUROC', balance: 0, apy: 6.94 },
 ]
 
-const YourSupply = ({ onSwitch, onWithdraw }) => {
-  const router = useRouter('')
+interface YourSupplyProps {
+  onSwitch: () => void // Replace `() => void` with the actual function type
+  onWithdraw: () => void // Replace `() => void` with the actual function type
+}
+
+const YourSupply: React.FC<YourSupplyProps> = ({ onSwitch, onWithdraw }) => {
+  // const router = useRouter('');
   const [isDepositModal, setDepositModal] = useState(false)
   const [isWithdrawModal, setWithdrawModal] = useState(false)
 
@@ -119,7 +124,13 @@ const YourSupply = ({ onSwitch, onWithdraw }) => {
     </>
   )
 }
-const YourBorrow = ({ onRepay, onBorrow }) => {
+
+interface YourBorrowProps {
+  onRepay: () => void // Replace `() => void` with the actual function type
+  onBorrow: () => void // Replace `() => void` with the actual function type
+}
+
+const YourBorrow: React.FC<YourBorrowProps> = ({ onRepay, onBorrow }) => {
   const [isRepayModal, setRepayModal] = useState(false)
 
   const handleOpenRepay = () => {
@@ -188,7 +199,13 @@ const YourBorrow = ({ onRepay, onBorrow }) => {
     </>
   )
 }
-const AssetsToSupply = ({ onSupply, onDetails }) => {
+
+interface YourAssetProps {
+  onSupply: () => void
+  onDetails: (asset: string) => void // Update the type to accept an 'asset' argument
+}
+
+const AssetsToSupply: React.FC<YourAssetProps> = ({ onSupply, onDetails }) => {
   return (
     <>
       <div className="rounded w-5/12 overflow-hidden shadow-lg bg-gray-custom">
@@ -229,7 +246,7 @@ const AssetsToSupply = ({ onSupply, onDetails }) => {
                       Supply
                     </button>
                     <button
-                      onClick={() => onDetails(item.asset)}
+                      // onClick={() => onDetails(item.asset)}
                       className="ml-2 mr-2 bg-transparent hover:bg-white-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded"
                     >
                       Details
@@ -244,7 +261,12 @@ const AssetsToSupply = ({ onSupply, onDetails }) => {
     </>
   )
 }
-const AssetsToBorrow = ({ onDetails }) => {
+
+interface YourBorrowedAssetProps {
+  onDetails: (asset: string) => void // Replace `() => void` with the actual function type
+}
+
+const AssetsToBorrow: React.FC<YourBorrowedAssetProps> = ({ onDetails }) => {
   return (
     <>
       <div className="rounded w-6/12 overflow-hidden shadow-lg bg-gray-custom">
@@ -286,7 +308,7 @@ const AssetsToBorrow = ({ onDetails }) => {
                       Borrow
                     </button>
                     <button
-                      onClick={() => onDetails(item.asset)}
+                      // onClick={() => onDetails(item.asset)}
                       className="ml-2 mr-2 bg-transparent hover:bg-white-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded"
                     >
                       Details
@@ -335,13 +357,14 @@ const Dashboard: NextPage = () => {
           <div className="container h-screen relative z-20">
             <div className="h-full flex flex-col justify-end mt-10 lg:pb-0 lg:justify-center">
               <div className="flex flex-row justify-around mb-10 text-start text-white white border-white">
+                {/* Pass the props with their types */}
                 <YourSupply onSwitch={onSwitch} onWithdraw={onWithdraw} />
                 <YourBorrow onRepay={onRepay} onBorrow={onBorrow} />
               </div>
               <div className="flex flex-row justify-around mb-10 text-start text-white white border-white">
                 <AssetsToSupply
                   onSupply={onSupply}
-                  onDetails={(asset) => onDetails(asset)}
+                  onDetails={(asset) => onDetails(asset)} // Pass the 'asset' argument here
                 />
                 <AssetsToBorrow onDetails={(asset) => onDetails(asset)} />
               </div>
